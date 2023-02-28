@@ -8,8 +8,8 @@ public class Main {
 
     public AppStatusIcon() {
       /* Create tray icon */
-      trayicon = new StatusIcon.from_icon_name("gtk-home");
-      trayicon.set_tooltip_text ("Tray");
+      trayicon = new StatusIcon.from_icon_name("go-down");
+      trayicon.set_tooltip_text ("statusicon-xmodmap");
       trayicon.set_visible(true);
 
       trayicon.activate.connect(about_clicked);
@@ -32,16 +32,6 @@ public class Main {
       menuItem.activate.connect(about_clicked);
       menuSystem.append(menuItem);
 
-      box = new Box (Orientation.HORIZONTAL, 6);
-      icon = new Gtk.Image.from_icon_name ("gtk-quit", IconSize.MENU);
-      label = new Label ("Quit");
-      menuItem = new Gtk.MenuItem();
-      box.add (icon);
-      box.add (label);
-      menuItem.add (box);
-      menuItem.activate.connect(Gtk.main_quit);
-      menuSystem.append(menuItem);
-
       menuSystem.show_all();
     }
 
@@ -52,10 +42,9 @@ public class Main {
     private void about_clicked() {
       if (aboutDialog == null) {
         aboutDialog = new AboutDialog();
-        aboutDialog.set_version("0.0.0");
-        aboutDialog.set_program_name("Tray");
-        aboutDialog.set_comments("Tray utility");
-        aboutDialog.set_copyright("vala");
+        aboutDialog.set_version("0.1.0");
+        aboutDialog.set_program_name("statusicon-xmodmap");
+        aboutDialog.set_comments("StatusIcon for custom keymap user to run xmodmap");
       }
 
       aboutDialog.run();
