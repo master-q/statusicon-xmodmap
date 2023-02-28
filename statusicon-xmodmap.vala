@@ -8,11 +8,11 @@ public class Main {
 
     public AppStatusIcon() {
       /* Create tray icon */
-      trayicon = new StatusIcon.from_icon_name("go-down");
+      trayicon = new StatusIcon.from_icon_name("go-up");
       trayicon.set_tooltip_text ("statusicon-xmodmap");
       trayicon.set_visible(true);
 
-      trayicon.activate.connect(about_clicked);
+      trayicon.activate.connect(xmodmap_clicked);
 
       create_menuSystem();
       trayicon.popup_menu.connect(menuSystem_popup);
@@ -23,10 +23,24 @@ public class Main {
       menuSystem = new Gtk.Menu();
 
       var box = new Box (Orientation.HORIZONTAL, 6);
-      var icon = new Gtk.Image.from_icon_name ("gtk-about", IconSize.MENU);
-      var label = new Label ("About");
+      var label = new Label ("Terminal");
       var menuItem = new Gtk.MenuItem();
-      box.add (icon);
+      box.add (label);
+      menuItem.add (box);
+      menuItem.activate.connect(terminal_clicked);
+      menuSystem.append(menuItem);
+
+      box = new Box (Orientation.HORIZONTAL, 6);
+      label = new Label ("Xmodmap");
+      menuItem = new Gtk.MenuItem();
+      box.add (label);
+      menuItem.add (box);
+      menuItem.activate.connect(xmodmap_clicked);
+      menuSystem.append(menuItem);
+
+      box = new Box (Orientation.HORIZONTAL, 6);
+      label = new Label ("About");
+      menuItem = new Gtk.MenuItem();
       box.add (label);
       menuItem.add (box);
       menuItem.activate.connect(about_clicked);
@@ -37,6 +51,20 @@ public class Main {
 
     private void menuSystem_popup(uint button, uint time) {
       menuSystem.popup(null, null, null, button, time);
+    }
+
+	private void terminal_clicked() {
+      try {
+        Process.spawn_command_line_sync("x-terminal-emulator &");
+      } catch (SpawnError e) {
+      }
+    }
+
+	private void xmodmap_clicked() {
+      try {
+        Process.spawn_command_line_sync("xmodmap ~/.Xmodmap &");
+      } catch (SpawnError e) {
+      }
     }
 
     private void about_clicked() {
