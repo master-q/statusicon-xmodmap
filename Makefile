@@ -1,12 +1,14 @@
+PROG = statusicon-xmodmap
+
 .PHONY: all run clean
 
-all: statusicon-xmodmap
+all: $(PROG)
 
-statusicon-xmodmap: statusicon-xmodmap.vala
+$(PROG): $(PROG).vala
 	valac --pkg=gtk+-3.0 $<
 
 run: all
-	./statusicon-xmodmap
+	./$(PROG)
 
 clean:
-	rm -f statusicon-xmodmap *.c
+	rm -f $(PROG) *.c
