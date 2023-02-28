@@ -62,7 +62,10 @@ public class Main {
 
 	private void xmodmap_clicked() {
       try {
-        Process.spawn_command_line_sync("xmodmap ~/.Xmodmap &");
+        var home = GLib.Environment.get_home_dir();
+        string[] spawn_args = {"xmodmap", ".Xmodmap"};
+        string[] spawn_env = Environ.get();
+        Process.spawn_sync (home, spawn_args, spawn_env, SpawnFlags.SEARCH_PATH, null);
       } catch (SpawnError e) {
       }
     }
