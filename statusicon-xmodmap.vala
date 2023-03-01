@@ -55,7 +55,9 @@ public class Main {
 
 	private void terminal_clicked() {
       try {
-        Process.spawn_command_line_sync("x-terminal-emulator &");
+        string[] spawn_args = {"x-terminal-emulator"};
+        string[] spawn_env = Environ.get();
+        Process.spawn_async ("/", spawn_args, spawn_env, SpawnFlags.SEARCH_PATH, null, null);
       } catch (SpawnError e) {
       }
     }
