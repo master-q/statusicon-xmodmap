@@ -32,6 +32,6 @@ you will the custom modifier is lost on the session.
 
 On this case, someone needs to run xmodmap manually.
 But how to do that?
-The custom modifier key needs to run xmodmap, which needs some terminals, which needs to be exec by the key on i3wm...
+The custom modifier key needs to run xmodmap, which needs some terminals, which needs to be executed by the key on i3wm...
 
 This application is a quick hack to resolve this situation. You can just click the status icon to run xmodmap.
