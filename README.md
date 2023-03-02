@@ -28,7 +28,7 @@ If you use following environments:
 * connecting your i3wm desktop on [xrdp](https://github.com/neutrinolabs/xrdp), and
 * reconnecting the RDP session,
 
-you will the custom modifier is lost on the session.
+you will lose the custom modifieron on the session.
 
 On this case, someone needs to run xmodmap manually.
 But how to do that?
